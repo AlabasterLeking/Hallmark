@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(
-        modid = "hearthandharvest",
+        modid = "hallmark",
         bus = EventBusSubscriber.Bus.MOD
 )
 public class DataGenerators {

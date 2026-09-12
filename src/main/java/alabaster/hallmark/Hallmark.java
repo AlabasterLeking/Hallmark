@@ -24,6 +24,10 @@ public class Hallmark {
         HallmarkModBlocks.BLOCKS.register(modEventBus);
         HallmarkModItems.ITEMS.register(modEventBus);
         HallmarkModCreativeTabs.CREATIVE_TABS.register(modEventBus);
+        HallmarkModComponents.DATA_COMPONENTS.register(modEventBus);
+        HallmarkModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
+        HallmarkModMenus.MENUS.register(modEventBus);
+        HallmarkModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
     }
 
     @SubscribeEvent

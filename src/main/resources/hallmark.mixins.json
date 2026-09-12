@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "alabaster.hallmark.common.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "hallmark.refmap.json",
+  "mixins": [
+    "IngredientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

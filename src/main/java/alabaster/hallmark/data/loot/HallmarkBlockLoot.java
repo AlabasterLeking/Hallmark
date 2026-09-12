@@ -1,5 +1,6 @@
 package alabaster.hallmark.data.loot;
 
+import alabaster.hallmark.common.registry.HallmarkModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
@@ -18,7 +19,7 @@ public class HallmarkBlockLoot extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-
+        dropSelf(HallmarkModBlocks.MINTING_PRESS.get());
     }
 
     @Override

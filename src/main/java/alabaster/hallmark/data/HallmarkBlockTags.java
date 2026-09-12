@@ -1,8 +1,10 @@
 package alabaster.hallmark.data;
 
 import alabaster.hallmark.Hallmark;
+import alabaster.hallmark.common.registry.HallmarkModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.tags.BlockTags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -40,6 +42,7 @@ public class HallmarkBlockTags extends BlockTagsProvider {
     }
 
     protected void registerBlockMineables() {
-
+        tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(HallmarkModBlocks.MINTING_PRESS.get());
     }
 }

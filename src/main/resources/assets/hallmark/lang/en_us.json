@@ -1,0 +1,21 @@
+{
+  "itemGroup.hallmark": "Hallmark",
+
+  "item.hallmark.stamp": "Stamp",
+  "stamp.blank": "Unassigned - Name in Anvil",
+  "stamp.generation.0": "Original",
+  "stamp.generation.1": "Copy of Original",
+  "stamp.generation.2": "Copy of a Copy",
+  "stamp.generation.3": "Worn",
+
+  "block.hallmark.minting_press": "Minting Press",
+  "container.hallmark.minting_press": "Minting Press",
+  "gui.hallmark.minting_press.input_slot": "Item to mint",
+  "gui.hallmark.minting_press.stamp_slot": "Stamp",
+  "gui.hallmark.minting_press.output_slot": "Minted item",
+
+  "minted.mark": "Bearing the mark of %s",
+
+  "item.hallmark.monocle": "Monocle",
+  "tooltip.monocle.hint": "Reveals mint identifiers when worn"
+}

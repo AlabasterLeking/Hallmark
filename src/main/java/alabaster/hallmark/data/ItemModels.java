@@ -1,6 +1,7 @@
 package alabaster.hallmark.data;
 
 import alabaster.hallmark.Hallmark;
+import alabaster.hallmark.common.registry.HallmarkModItems;
 import com.google.common.collect.Sets;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -27,6 +28,9 @@ public class ItemModels extends ItemModelProvider
     protected void registerModels() {
         Set<Item> items = BuiltInRegistries.ITEM.stream().filter(i -> Hallmark.MODID.equals(BuiltInRegistries.ITEM.getKey(i).getNamespace()))
                 .collect(Collectors.toSet());
+
+        // Specific cases
+        items.remove(HallmarkModItems.MONOCLE.get());
 
         // Blocks with special item sprites
         Set<Item> spriteBlockItems = Sets.newHashSet(
