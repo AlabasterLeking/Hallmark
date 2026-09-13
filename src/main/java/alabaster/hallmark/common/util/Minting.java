@@ -1,12 +1,12 @@
 package alabaster.hallmark.common.util;
 
 import alabaster.hallmark.common.item.StampItem;
+import alabaster.hallmark.common.item.component.MintedData;
 import alabaster.hallmark.common.item.component.StampData;
 import alabaster.hallmark.common.registry.HallmarkModComponents;
 import net.minecraft.world.item.ItemStack;
 
 public final class Minting {
-
     private Minting() {
     }
 
@@ -31,11 +31,16 @@ public final class Minting {
     }
 
     public static boolean canDeface(ItemStack input, ItemStack stamp) {
-        return stamp.isEmpty() && StampItem.isMinted(input);
+        MintedData minted = StampItem.mintedOf(input);
+        if (minted == null) {
+            return false;
+        }
+        StampData data = StampItem.dataOf(stamp);
+        return data != null && data.id().equals(minted.id());
     }
 
-    public static ItemStack deface(ItemStack input) {
-        if (!StampItem.isMinted(input)) {
+    public static ItemStack deface(ItemStack input, ItemStack stamp) {
+        if (!canDeface(input, stamp)) {
             return ItemStack.EMPTY;
         }
         ItemStack out = input.copy();
@@ -48,7 +53,7 @@ public final class Minting {
             return mint(input, stamp);
         }
         if (canDeface(input, stamp)) {
-            return deface(input);
+            return deface(input, stamp);
         }
         return ItemStack.EMPTY;
     }

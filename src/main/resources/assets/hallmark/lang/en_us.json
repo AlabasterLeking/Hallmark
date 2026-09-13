@@ -15,7 +15,25 @@
   "gui.hallmark.minting_press.output_slot": "Minted item",
 
   "minted.mark": "Bearing the mark of %s",
+  "message.hallmark.no_place": "You may not place this",
 
   "item.hallmark.monocle": "Monocle",
-  "tooltip.monocle.hint": "Reveals mint identifiers when worn"
+  "tooltip.monocle.hint": "Reveals mint identifiers when worn",
+
+  "hallmark.advancement.root": "Hallmark",
+  "hallmark.advancement.root.desc": "Mint unique currency from any item!",
+  "hallmark.advancement.blank_slate": "Blank Slate",
+  "hallmark.advancement.blank_slate.desc": "Craft a stamp",
+  "hallmark.advancement.make_your_mark": "Make Your Mark",
+  "hallmark.advancement.make_your_mark.desc": "Name a stamp in an anvil and give it an identity",
+  "hallmark.advancement.minty": "Minty",
+  "hallmark.advancement.minty.desc": "Craft a Minting Press",
+  "hallmark.advancement.blockchain": "Welcome to the Blockchain!",
+  "hallmark.advancement.blockchain.desc": "Mint your first currency",
+  "hallmark.advancement.demonetized": "Demonetized",
+  "hallmark.advancement.demonetized.desc": "Strip the mark back off a currency by using the stamp on it again",
+  "hallmark.advancement.assayer": "Assayer",
+  "hallmark.advancement.assayer.desc": "Craft a monocle and see what others cannot",
+  "hallmark.advancement.counterfeit": "The Imitation Game",
+  "hallmark.advancement.counterfeit.desc": "Copy a stamp that was never yours"
 }

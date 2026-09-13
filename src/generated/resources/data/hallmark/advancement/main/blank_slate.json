@@ -1,0 +1,33 @@
+{
+  "parent": "hallmark:main/root",
+  "criteria": {
+    "stamp": {
+      "conditions": {
+        "items": [
+          {
+            "items": "hallmark:stamp"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "hallmark.advancement.blank_slate.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "hallmark:stamp"
+    },
+    "title": {
+      "translate": "hallmark.advancement.blank_slate"
+    }
+  },
+  "requirements": [
+    [
+      "stamp"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

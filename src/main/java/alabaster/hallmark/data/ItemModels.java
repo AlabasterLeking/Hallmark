@@ -30,6 +30,7 @@ public class ItemModels extends ItemModelProvider
                 .collect(Collectors.toSet());
 
         // Specific cases
+        items.remove(HallmarkModItems.STAMP.get());
         items.remove(HallmarkModItems.MONOCLE.get());
 
         // Blocks with special item sprites

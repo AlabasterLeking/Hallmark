@@ -1,0 +1,33 @@
+{
+  "parent": "hallmark:main/blank_slate",
+  "criteria": {
+    "named_stamp": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "hallmark.advancement.make_your_mark.desc"
+    },
+    "icon": {
+      "components": {
+        "hallmark:stamp": {
+          "id": "00000000-0000-0000-0000-000000000001",
+          "label": "Hallmark"
+        },
+        "minecraft:item_name": "\"Hallmark\""
+      },
+      "count": 1,
+      "id": "hallmark:stamp"
+    },
+    "title": {
+      "translate": "hallmark.advancement.make_your_mark"
+    }
+  },
+  "requirements": [
+    [
+      "named_stamp"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

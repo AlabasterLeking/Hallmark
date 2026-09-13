@@ -1,0 +1,33 @@
+{
+  "parent": "hallmark:main/blank_slate",
+  "criteria": {
+    "minting_press": {
+      "conditions": {
+        "items": [
+          {
+            "items": "hallmark:minting_press"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "hallmark.advancement.minty.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "hallmark:minting_press"
+    },
+    "title": {
+      "translate": "hallmark.advancement.minty"
+    }
+  },
+  "requirements": [
+    [
+      "minting_press"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

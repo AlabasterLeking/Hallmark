@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hallmark:item/stamp"
+  },
+  "overrides": [
+    {
+      "predicate": { "hallmark:named": 1 },
+      "model": "hallmark:item/stamp_named"
+    }
+  ]
+}

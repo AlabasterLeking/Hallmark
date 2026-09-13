@@ -1,0 +1,27 @@
+{
+  "parent": "hallmark:main/minty",
+  "criteria": {
+    "minted": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "hallmark.advancement.blockchain.desc"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:gold_ingot"
+    },
+    "title": {
+      "translate": "hallmark.advancement.blockchain"
+    }
+  },
+  "requirements": [
+    [
+      "minted"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

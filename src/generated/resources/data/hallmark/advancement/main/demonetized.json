@@ -1,0 +1,26 @@
+{
+  "parent": "hallmark:main/blockchain",
+  "criteria": {
+    "defaced": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "hallmark.advancement.demonetized.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "hallmark:minting_press"
+    },
+    "title": {
+      "translate": "hallmark.advancement.demonetized"
+    }
+  },
+  "requirements": [
+    [
+      "defaced"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

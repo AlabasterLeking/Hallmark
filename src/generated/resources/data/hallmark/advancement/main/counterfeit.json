@@ -1,0 +1,36 @@
+{
+  "parent": "hallmark:main/make_your_mark",
+  "criteria": {
+    "copied_stamp": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "hallmark.advancement.counterfeit.desc"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "components": {
+        "hallmark:stamp": {
+          "generation": 1,
+          "id": "00000000-0000-0000-0000-000000000001",
+          "label": "Hallmark"
+        },
+        "minecraft:item_name": "\"Hallmark\""
+      },
+      "count": 1,
+      "id": "hallmark:stamp"
+    },
+    "title": {
+      "translate": "hallmark.advancement.counterfeit"
+    }
+  },
+  "requirements": [
+    [
+      "copied_stamp"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

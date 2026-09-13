@@ -1,0 +1,33 @@
+{
+  "parent": "hallmark:main/root",
+  "criteria": {
+    "monocle": {
+      "conditions": {
+        "items": [
+          {
+            "items": "hallmark:monocle"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "hallmark.advancement.assayer.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "hallmark:monocle"
+    },
+    "title": {
+      "translate": "hallmark.advancement.assayer"
+    }
+  },
+  "requirements": [
+    [
+      "monocle"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
