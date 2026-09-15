@@ -7,8 +7,10 @@ import alabaster.hallmark.common.registry.HallmarkModMenus;
 import alabaster.hallmark.common.util.Minting;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.client.renderer.texture.TextureAtlas;
-import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -16,46 +18,49 @@ import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.items.ItemStackHandler;
-import net.neoforged.neoforge.items.SlotItemHandler;
 
+import static alabaster.hallmark.common.block.entity.MintingPressBlockEntity.SLOT_COUNT;
 import static alabaster.hallmark.common.block.entity.MintingPressBlockEntity.SLOT_INPUT;
 import static alabaster.hallmark.common.block.entity.MintingPressBlockEntity.SLOT_OUTPUT;
 import static alabaster.hallmark.common.block.entity.MintingPressBlockEntity.SLOT_STAMP;
 
 public class MintingPressMenu extends AbstractContainerMenu {
-    public static final ResourceLocation STAMP_SLOT_ICON =
-            ResourceLocation.fromNamespaceAndPath(Hallmark.MODID, "item/stamp_slot");
+    public static final ResourceLocation STAMP_SLOT_ICON = Hallmark.id("item/stamp_slot");
 
-    private static final int PRESS_SLOT_COUNT = 3;
+    private static final int PRESS_SLOT_COUNT = SLOT_COUNT;
     private static final int PLAYER_INVENTORY_START = PRESS_SLOT_COUNT;
     private static final int PLAYER_INVENTORY_END = PLAYER_INVENTORY_START + 36;
 
-    private final ItemStackHandler items;
+    private final Container container;
     private final ContainerLevelAccess access;
 
-    public MintingPressMenu(int id, Inventory playerInventory, RegistryFriendlyByteBuf data) {
-        this(id, playerInventory, (MintingPressBlockEntity) playerInventory.player.level().getBlockEntity(data.readBlockPos()));
+    public MintingPressMenu(int id, Inventory playerInv, BlockPos pos) {
+        this(id, playerInv, containerAt(playerInv, pos), ContainerLevelAccess.create(playerInv.player.level(), pos));
     }
 
     public MintingPressMenu(int id, Inventory playerInv, MintingPressBlockEntity press) {
-        super(HallmarkModMenus.MINTING_PRESS.get(), id);
-        this.items = press.getItems();
-        this.access = ContainerLevelAccess.create(press.getLevel(), press.getBlockPos());
+        this(id, playerInv, press, ContainerLevelAccess.create(press.getLevel(), press.getBlockPos()));
+    }
+
+    private MintingPressMenu(int id, Inventory playerInv, Container container, ContainerLevelAccess access) {
+        super(HallmarkModMenus.MINTING_PRESS, id);
+        checkContainerSize(container, SLOT_COUNT);
+        this.container = container;
+        this.access = access;
 
         int startX = 8;
         int borderSlotSize = 18;
 
-        this.addSlot(new SlotItemHandler(items, SLOT_INPUT, 44, 50));
+        this.addSlot(new MintingPressSlot(container, SLOT_INPUT, 44, 50));
 
-        this.addSlot(new SlotItemHandler(items, SLOT_STAMP, 44, 20) {
+        this.addSlot(new MintingPressSlot(container, SLOT_STAMP, 44, 20) {
             @Override
             public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
                 return Pair.of(TextureAtlas.LOCATION_BLOCKS, STAMP_SLOT_ICON);
             }
         });
 
-        this.addSlot(new MintResultSlot(items, SLOT_OUTPUT, 116, 35, this));
+        this.addSlot(new MintResultSlot(container, SLOT_OUTPUT, 116, 35, this));
 
         int startPlayerInvY = 84;
         for (int row = 0; row < 3; row++) {
@@ -72,15 +77,22 @@ public class MintingPressMenu extends AbstractContainerMenu {
         updateResult();
     }
 
+    private static Container containerAt(Inventory playerInv, BlockPos pos) {
+        if (playerInv.player.level().getBlockEntity(pos) instanceof MintingPressBlockEntity press) {
+            return press;
+        }
+        return new SimpleContainer(SLOT_COUNT);
+    }
+
     public void updateResult() {
-        ItemStack result = Minting.process(items.getStackInSlot(SLOT_INPUT), items.getStackInSlot(SLOT_STAMP));
-        if (!ItemStack.matches(result, items.getStackInSlot(SLOT_OUTPUT))) {
-            items.setStackInSlot(SLOT_OUTPUT, result);
+        ItemStack result = Minting.process(container.getItem(SLOT_INPUT), container.getItem(SLOT_STAMP));
+        if (!ItemStack.matches(result, container.getItem(SLOT_OUTPUT))) {
+            container.setItem(SLOT_OUTPUT, result);
         }
     }
 
     public void onResultTaken() {
-        items.setStackInSlot(SLOT_INPUT, ItemStack.EMPTY);
+        container.setItem(SLOT_INPUT, ItemStack.EMPTY);
         updateResult();
     }
 
@@ -114,11 +126,11 @@ public class MintingPressMenu extends AbstractContainerMenu {
             if (!moveItemStackTo(stack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END, true)) {
                 return ItemStack.EMPTY;
             }
-        } else if (items.isItemValid(SLOT_STAMP, stack)) {
+        } else if (container.canPlaceItem(SLOT_STAMP, stack)) {
             if (!moveItemStackTo(stack, SLOT_STAMP, SLOT_STAMP + 1, false)) {
                 return ItemStack.EMPTY;
             }
-        } else if (items.isItemValid(SLOT_INPUT, stack)) {
+        } else if (container.canPlaceItem(SLOT_INPUT, stack)) {
             if (!moveItemStackTo(stack, SLOT_INPUT, SLOT_INPUT + 1, false)) {
                 return ItemStack.EMPTY;
             }
@@ -142,12 +154,12 @@ public class MintingPressMenu extends AbstractContainerMenu {
     public void removed(Player player) {
         super.removed(player);
         if (!player.level().isClientSide) {
-            items.setStackInSlot(SLOT_OUTPUT, ItemStack.EMPTY);
+            container.setItem(SLOT_OUTPUT, ItemStack.EMPTY);
         }
     }
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(this.access, player, HallmarkModBlocks.MINTING_PRESS.get());
+        return stillValid(this.access, player, HallmarkModBlocks.MINTING_PRESS);
     }
 }

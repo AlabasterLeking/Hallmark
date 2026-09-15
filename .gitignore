@@ -1,27 +1,26 @@
-# eclipse
-bin
-*.launch
-.settings
-.metadata
-.classpath
-.project
 
+# eclipse
+# fabric
+# gradle
 # idea
-out
+# other
+*.iml
 *.ipr
 *.iws
-*.iml
-.idea
-
-# gradle
-build
+*.launch
+.classpath
 .gradle
-
-# other
-eclipse
-run
-runs
-run-data
-
-repo
+.idea
+.metadata
+.project
+.settings
 /src/generated/resources/.cache/
+bin
+build
+eclipse
+out
+remappedSrc
+repo
+run
+run-data
+runs

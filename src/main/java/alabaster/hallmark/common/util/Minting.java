@@ -26,7 +26,7 @@ public final class Minting {
             return ItemStack.EMPTY;
         }
         ItemStack out = input.copy();
-        out.set(HallmarkModComponents.MINTED.get(), StampItem.dataOf(stamp).toMinted());
+        out.set(HallmarkModComponents.MINTED, StampItem.dataOf(stamp).toMinted());
         return out;
     }
 
@@ -44,7 +44,7 @@ public final class Minting {
             return ItemStack.EMPTY;
         }
         ItemStack out = input.copy();
-        out.remove(HallmarkModComponents.MINTED.get());
+        out.remove(HallmarkModComponents.MINTED);
         return out;
     }
 

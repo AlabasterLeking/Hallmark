@@ -58,7 +58,7 @@ public class MintingPressBlock extends BaseEntityBlock {
             return InteractionResult.SUCCESS;
         }
         if (level.getBlockEntity(pos) instanceof MintingPressBlockEntity press) {
-            player.openMenu(press, pos);
+            player.openMenu(press);
         }
         return InteractionResult.CONSUME;
     }

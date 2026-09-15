@@ -60,7 +60,7 @@ public class StampCloneRecipe extends CustomRecipe {
         }
         StampData copy = StampItem.dataOf(source).copied();
         ItemStack out = new ItemStack(source.getItem());
-        out.set(HallmarkModComponents.STAMP.get(), copy);
+        out.set(HallmarkModComponents.STAMP, copy);
         out.set(DataComponents.ITEM_NAME, Component.literal(copy.label()));
         return out;
     }
@@ -72,8 +72,8 @@ public class StampCloneRecipe extends CustomRecipe {
             ItemStack stack = input.getItem(i);
             if (StampItem.isStamp(stack)) {
                 remaining.set(i, stack.copy());
-            } else {
-                remaining.set(i, stack.getCraftingRemainingItem());
+            } else if (stack.getItem().hasCraftingRemainingItem()) {
+                remaining.set(i, new ItemStack(stack.getItem().getCraftingRemainingItem()));
             }
         }
         return remaining;
@@ -86,6 +86,6 @@ public class StampCloneRecipe extends CustomRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return HallmarkModRecipeSerializers.STAMP_CLONE.get();
+        return HallmarkModRecipeSerializers.STAMP_CLONE;
     }
 }

@@ -17,8 +17,8 @@ public class StampItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-        StampData data = stack.get(HallmarkModComponents.STAMP.get());
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+        StampData data = stack.get(HallmarkModComponents.STAMP);
         if (data == null) {
             tooltip.add(Component.translatable("stamp.blank").withStyle(ChatFormatting.GRAY));
             return;
@@ -27,18 +27,18 @@ public class StampItem extends Item {
     }
 
     public static StampData dataOf(ItemStack stack) {
-        return stack.get(HallmarkModComponents.STAMP.get());
+        return stack.get(HallmarkModComponents.STAMP);
     }
 
     public static boolean isStamp(ItemStack stack) {
-        return stack.has(HallmarkModComponents.STAMP.get());
+        return stack.has(HallmarkModComponents.STAMP);
     }
 
     public static boolean isMinted(ItemStack stack) {
-        return stack.has(HallmarkModComponents.MINTED.get());
+        return stack.has(HallmarkModComponents.MINTED);
     }
 
     public static MintedData mintedOf(ItemStack stack) {
-        return stack.get(HallmarkModComponents.MINTED.get());
+        return stack.get(HallmarkModComponents.MINTED);
     }
 }

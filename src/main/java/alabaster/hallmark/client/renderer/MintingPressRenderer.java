@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import com.mojang.math.Axis;
 
+@net.fabricmc.api.Environment(net.fabricmc.api.EnvType.CLIENT)
 public class MintingPressRenderer implements BlockEntityRenderer<MintingPressBlockEntity> {
     private final ItemRenderer itemRenderer;
 

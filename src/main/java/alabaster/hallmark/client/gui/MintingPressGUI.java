@@ -3,18 +3,17 @@ package alabaster.hallmark.client.gui;
 import alabaster.hallmark.Hallmark;
 import alabaster.hallmark.common.block.entity.MintingPressBlockEntity;
 import alabaster.hallmark.common.block.entity.menu.MintingPressMenu;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class MintingPressGUI extends AbstractContainerScreen<MintingPressMenu> {
-    private static final ResourceLocation MINTING_PRESS_GUI =
-            ResourceLocation.fromNamespaceAndPath(Hallmark.MODID, "textures/gui/minting_press.png");
+    private static final ResourceLocation MINTING_PRESS_GUI = Hallmark.id("textures/gui/minting_press.png");
 
     public MintingPressGUI(MintingPressMenu menu, Inventory playerInv, Component title) {
         super(menu, playerInv, title);

@@ -1,35 +1,19 @@
 package alabaster.hallmark.data.loot;
 
 import alabaster.hallmark.common.registry.HallmarkModBlocks;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.storage.loot.LootTable;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
-public class HallmarkBlockLoot extends BlockLootSubProvider {
-    private final Set<Block> generatedLootTables = new HashSet<>();
-
-    public HallmarkBlockLoot(HolderLookup.Provider holder) {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), holder);
+public class HallmarkBlockLoot extends FabricBlockLootTableProvider {
+    public HallmarkBlockLoot(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        super(output, registriesFuture);
     }
 
     @Override
-    protected void generate() {
-        dropSelf(HallmarkModBlocks.MINTING_PRESS.get());
-    }
-
-    @Override
-    protected void add(Block block, LootTable.Builder builder) {
-        this.generatedLootTables.add(block);
-        this.map.put(block.getLootTable(), builder);
-    }
-
-    @Override
-    protected Iterable<Block> getKnownBlocks() {
-        return generatedLootTables;
+    public void generate() {
+        dropSelf(HallmarkModBlocks.MINTING_PRESS);
     }
 }

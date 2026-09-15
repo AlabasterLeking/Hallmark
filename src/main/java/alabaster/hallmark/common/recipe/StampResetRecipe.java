@@ -59,6 +59,6 @@ public class StampResetRecipe extends CustomRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return HallmarkModRecipeSerializers.STAMP_RESET.get();
+        return HallmarkModRecipeSerializers.STAMP_RESET;
     }
 }

@@ -3,10 +3,10 @@
   "minVersion": "0.8",
   "package": "alabaster.hallmark.common.mixin",
   "compatibilityLevel": "JAVA_21",
-  "refmap": "hallmark.refmap.json",
   "mixins": [
-    "CraftingMenuMixin",
-    "RecipeManagerMixin"
+    "AnvilMenuMixin",
+    "RecipeManagerMixin",
+    "ResultSlotMixin"
   ],
   "injectors": {
     "defaultRequire": 1

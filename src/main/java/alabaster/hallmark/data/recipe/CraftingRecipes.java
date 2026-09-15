@@ -12,7 +12,7 @@ public class CraftingRecipes {
     }
 
     private static void recipesTools(RecipeOutput output) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, HallmarkModItems.STAMP.get(), 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, HallmarkModItems.STAMP, 1)
                 .pattern("S")
                 .pattern("G")
                 .define('G', Items.GOLD_INGOT)
@@ -20,7 +20,7 @@ public class CraftingRecipes {
                 .unlockedBy("has_gold_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GOLD_INGOT))
                 .save(output);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, HallmarkModItems.MINTING_PRESS.get(), 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, HallmarkModItems.MINTING_PRESS, 1)
                 .pattern("GwG")
                 .pattern("WWW")
                 .pattern("WWW")
@@ -30,7 +30,7 @@ public class CraftingRecipes {
                 .unlockedBy("has_gold_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GOLD_INGOT))
                 .save(output);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, HallmarkModItems.MONOCLE.get(), 1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, HallmarkModItems.MONOCLE, 1)
                 .pattern(" G ")
                 .pattern("GgG")
                 .pattern(" G ")

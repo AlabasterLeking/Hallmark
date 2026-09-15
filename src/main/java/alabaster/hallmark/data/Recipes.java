@@ -1,26 +1,21 @@
 package alabaster.hallmark.data;
 
-import alabaster.hallmark.data.recipe.*;
-import net.minecraft.MethodsReturnNonnullByDefault;
+import alabaster.hallmark.data.recipe.CraftingRecipes;
+import alabaster.hallmark.data.recipe.SmeltingRecipes;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.concurrent.CompletableFuture;
 
-@ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
-
-public class Recipes extends RecipeProvider
-{
-    public Recipes(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries);
+public class Recipes extends FabricRecipeProvider {
+    public Recipes(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        super(output, registriesFuture);
     }
 
     @Override
-    protected void buildRecipes(RecipeOutput output) {
+    public void buildRecipes(RecipeOutput output) {
         CraftingRecipes.register(output);
         SmeltingRecipes.register(output);
     }

@@ -2,17 +2,18 @@ package alabaster.hallmark.common.registry;
 
 import alabaster.hallmark.Hallmark;
 import alabaster.hallmark.common.block.entity.menu.MintingPressMenu;
-import net.minecraft.core.registries.Registries;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.inventory.MenuType;
-import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class HallmarkModMenus {
-    public static final DeferredRegister<MenuType<?>> MENUS =
-            DeferredRegister.create(Registries.MENU, Hallmark.MODID);
+    public static final MenuType<MintingPressMenu> MINTING_PRESS = Registry.register(
+            BuiltInRegistries.MENU,
+            Hallmark.id("minting_press"),
+            new ExtendedScreenHandlerType<>(MintingPressMenu::new, BlockPos.STREAM_CODEC));
 
-    public static final DeferredHolder<MenuType<?>, MenuType<MintingPressMenu>> MINTING_PRESS =
-            MENUS.register("minting_press", () -> IMenuTypeExtension.create(MintingPressMenu::new));
-
+    public static void register() {
+    }
 }

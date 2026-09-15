@@ -1,21 +1,3 @@
 {
-  "parent": "minecraft:item/handheld",
-  "loader": "neoforge:separate_transforms",
-  "base": {
-    "parent": "hallmark:item/monocle_2d"
-  },
-  "perspectives": {
-    "gui": {
-      "parent": "hallmark:item/monocle_2d"
-    },
-    "ground": {
-      "parent": "hallmark:item/monocle_2d"
-    },
-    "fixed": {
-      "parent": "hallmark:item/monocle_2d"
-    },
-    "head": {
-      "parent": "hallmark:item/monocle_3d"
-    }
-  }
+  "parent": "hallmark:item/monocle_2d"
 }

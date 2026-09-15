@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
+  "authors": [
+    "${mod_authors}"
+  ],
+  "contact": {
+    "sources": "https://github.com/AlabasterLeking/Hallmark"
+  },
+  "license": "${mod_license}",
+  "icon": "assets/hallmark/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "alabaster.hallmark.Hallmark"
+    ],
+    "client": [
+      "alabaster.hallmark.client.HallmarkClient"
+    ],
+    "fabric-datagen": [
+      "alabaster.hallmark.data.HallmarkDataGenerator"
+    ]
+  },
+  "mixins": [
+    "hallmark.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~${minecraft_version}",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
