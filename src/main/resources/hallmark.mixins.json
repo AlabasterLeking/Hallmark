@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "hallmark.refmap.json",
   "mixins": [
+    "CraftingMenuMixin",
     "RecipeManagerMixin"
   ],
   "injectors": {

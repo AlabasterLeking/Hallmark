@@ -1,7 +1,8 @@
 package alabaster.hallmark.common.mixin;
 
 import alabaster.hallmark.common.registry.HallmarkModComponents;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -27,6 +28,13 @@ public class RecipeManagerMixin {
     private void hallmark$blockMintedCached(RecipeType<?> type, RecipeInput input, Level level, RecipeHolder<?> lastRecipe, CallbackInfoReturnable<Optional<?>> cir) {
         if (containsMinted(input)) {
             cir.setReturnValue(Optional.empty());
+        }
+    }
+
+    @Inject(method = "getRemainingItemsFor(Lnet/minecraft/world/item/crafting/RecipeType;Lnet/minecraft/world/item/crafting/RecipeInput;Lnet/minecraft/world/level/Level;)Lnet/minecraft/core/NonNullList;", at = @At("HEAD"), cancellable = true)
+    private void hallmark$noRemaindersForMinted(RecipeType<?> type, RecipeInput input, Level level, CallbackInfoReturnable<NonNullList<ItemStack>> cir) {
+        if (containsMinted(input)) {
+            cir.setReturnValue(NonNullList.withSize(input.size(), ItemStack.EMPTY));
         }
     }
 
