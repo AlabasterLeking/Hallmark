@@ -21,7 +21,7 @@ public final class HallmarkEvents {
             if (!(stack.getItem() instanceof BlockItem) || !StampItem.isMinted(stack)) {
                 return InteractionResult.PASS;
             }
-            if (!level.isClientSide) {
+            if (level.isClientSide) {
                 player.displayClientMessage(
                         Component.translatable("message.hallmark.no_place").withStyle(ChatFormatting.RED), true);
             }
